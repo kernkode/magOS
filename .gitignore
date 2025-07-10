@@ -2,7 +2,7 @@
 .xmake/
 build/
 .vscode/
-bin/
 
 # MacOS Cache
 .DS_Store
+/bin
