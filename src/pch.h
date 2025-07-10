@@ -2,5 +2,9 @@
 #include <string>
 #include <map>
 #include <functional>
+#include <cstdint>
+#include <fstream>
+#include <sstream>
 
-#include "Command.h"
+#include "cli.h"
+#include "Wizard.h"
