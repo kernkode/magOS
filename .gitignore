@@ -2,9 +2,7 @@
 .xmake/
 build/
 .vscode/
-
-*.exe
-*.lua
+bin/
 
 # MacOS Cache
 .DS_Store
