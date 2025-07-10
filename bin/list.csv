@@ -1,0 +1,16 @@
+id,name,last_name,gender,age,id_father,is_dead,type_magic,is_owner
+1,Merlin,Ambrosius,H,120,-1,0,elemental,1
+2,Morgana,LeFay,M,90,1,0,unique,0
+3,Arthur,Pendragon,H,85,1,1,no_magic,0
+4,Gandalf,ElGris,H,201,2,0,mixed,0
+5,Saruman,ElBlanco,H,210,2,1,unique,0
+6,Radagast,ElPardo,H,195,4,0,elemental,0
+7,Galadriel,Lorien,M,8000,4,0,unique,0
+8,Elminster,Aumar,H,1200,6,0,mixed,0
+9,Alustriel,Silverhand,M,750,6,0,elemental,0
+10,Khelben,Arunsun,H,900,8,1,unique,0
+11,Laeral,Silverhand,M,700,8,0,mixed,0
+12,Vangerdahast,Azhur,H,150,9,0,no_magic,0
+13,Simbul,Agrivar,M,350,9,1,elemental,0
+14,Dove,Falconhand,M,300,11,0,unique,0
+15,Manshoon,ElMago,H,200,11,1,mixed,0
