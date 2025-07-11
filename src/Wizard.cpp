@@ -9,6 +9,7 @@ Wizard::~Wizard(){
 }
 
 void Wizard::showInfo(){
+    auto d = ThreeWizards::searchNode(ThreeWizards::root, this->id_father);
     std::cout << std::string(1, '\n');
     std::cout << this->name << " " << this->last_name << std::endl;
     std::cout << "---------------------------------" << std::endl;
@@ -20,7 +21,6 @@ void Wizard::showInfo(){
     std::cout << "Type magic: " << this->type_magic << std::endl;
     std::cout << "Is owner: " << this->is_owner << std::endl;
 
-    auto d = ThreeWizards::searchNode(ThreeWizards::root, this->id_father);
     if(!d) return;
     std::cout << "Hijo de: " << d->name << " " << d->last_name << std::endl;
 }
