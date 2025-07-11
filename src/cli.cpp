@@ -1,6 +1,6 @@
 #include "pch.h"
 
-std::map<std::string, std::function<void()>> Cli::commands;
+std::map<std::string, std::function<void(std::vector<std::string> args)>> Cli::commands;
 
 /**
  * \brief Finds a command by name.
@@ -21,7 +21,7 @@ bool Cli::find(std::string name) {
  *
  * \return true if the command was successfully added, false otherwise.
  */
-bool Cli::addCommand(std::string name, std::function<void()> func) {
+bool Cli::addCommand(std::string name, std::function<void(std::vector<std::string> args)> func) {
     Cli::commands[name] = func;
     return true;
 }
