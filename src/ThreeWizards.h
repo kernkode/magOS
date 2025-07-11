@@ -7,6 +7,6 @@ class ThreeWizards {
 
     public:
         bool loadCsv(const std::string path);
-        void showInfo(Wizard* mago);
+        void showAllInfo(Wizard* mago);
         static Wizard* searchNode(Wizard* node, int id);
 };

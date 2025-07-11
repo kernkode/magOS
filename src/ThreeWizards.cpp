@@ -10,7 +10,7 @@ Wizard* ThreeWizards::searchNode(Wizard* node, int id){
     return searchNode(node->node->next, id);
 }
 
-void ThreeWizards::showInfo(Wizard* mago){
+void ThreeWizards::showAllInfo(Wizard* mago){
     if(mago == this->root){
         std::cout << "HECTOR EL FATHER\n";
         this->root->showInfo();
@@ -25,11 +25,11 @@ void ThreeWizards::showInfo(Wizard* mago){
     }
 
     if(mago->node->prev){
-        this->showInfo(mago->node->prev);
+        this->showAllInfo(mago->node->prev);
     }
 
     if(mago->node->next){
-        this->showInfo(mago->node->next);
+        this->showAllInfo(mago->node->next);
     }
 }
 
