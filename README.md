@@ -17,6 +17,9 @@ xmake config --mode=debug --arch=x64 --plat=windows --toolchain=msvc
 
 # Generar archivos de proyecto para Visual Studio (Opcional)
 xmake project -k vsxmake2022
+
+# Activar debug mode
+add_defines("DEBUG_MODE")
 ```
 
 ### Compilación
