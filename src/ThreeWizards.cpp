@@ -1,22 +1,27 @@
 #include "pch.h"
 
-ThreeWizards::ThreeWizards() : root(nullptr){}
-ThreeWizards::~ThreeWizards(){
-    delete this->root;
+Wizard* ThreeWizards::searchNode(Wizard* node, int id){
+    if(node == nullptr) return nullptr;
+    if(node->getId() == id) return node;
+
+    Wizard *find = searchNode(node->node->prev, id);
+    if(find != nullptr) return find;
+
+    return searchNode(node->node->next, id);
 }
 
 void ThreeWizards::showInfo(Wizard* mago){
     if(mago == this->root){
+        std::cout << "HECTOR EL FATHER\n";
         this->root->showInfo();
     }
     
+    
     if(mago->node->prev != nullptr){
         mago->node->prev->showInfo();
-        //this->showInfo(mago->node->prev);
     }
     if(mago->node->next != nullptr){
         mago->node->next->showInfo();
-        //this->showInfo(mago->node->next);
     }
 
     if(mago->node->prev){
