@@ -20,21 +20,27 @@ Wizard* ThreeWizards::searchNode(Wizard* node, int id){
     return searchNode(node->node->next, id);
 }
 
-void ThreeWizards::showAllInfo(Wizard* mago){
+void ThreeWizards::showAllInfo(Wizard* mago, uint16_t flags){
+
+    //lambda
+    auto check = [&](Wizard* magic) -> void {
+        if(!magic) return;
+
+        if(flags & SHOW_ALIVE && !magic->is_dead || flags & SHOW_OWNER && magic->is_owner || flags & SHOW_DEAD && magic->is_dead) {
+            magic->showInfo();
+        }
+        return;
+    };
+
     if(mago == this->root){
-        std::cout << "HECTOR EL FATHER\n";
-        this->root->showInfo();
-    }
-    
-    if(mago->node->prev){
-        mago->node->prev->showInfo();
-    }
-    if(mago->node->next){
-        mago->node->next->showInfo();
+        check(this->root);
     }
 
-    if(mago->node->prev) this->showAllInfo(mago->node->prev);
-    if(mago->node->next) this->showAllInfo(mago->node->next);
+    check(mago->node->prev);
+    check(mago->node->next);
+
+    if(mago->node->prev) this->showAllInfo(mago->node->prev, flags);
+    if(mago->node->next) this->showAllInfo(mago->node->next, flags);
 }
 
 //Recursividad de mierda, la odio...
@@ -101,53 +107,9 @@ bool ThreeWizards::loadCsv(const std::string path){
     //Crea el arbol de magos
     for(auto const& [id, wizard] : Mapgos) {
         if(wizard->is_owner) continue;
-        std::cout << wizard->getId() << std::endl;
         addNode(root, wizard);
     }
 
-    /*for(auto const [id, wizard] : Mapgos) {
-        for(auto const [id_node, child] : Mapgos) {
-            if(wizard->getId() == child->id_father) {
-                
-                if(!wizard->node->prev && wizard->getId() < child->getId()) {
-                    wizard->node->prev = child;
-                    #ifdef DEBUG_MODE
-                        std::printf("(%d) ID Padre: %d | %s %s (PREV)\n", 
-                            child->getId(), child->id_father, child->name.c_str(),
-                            child->last_name.c_str()
-                        );
-                    #endif
-                }
-                else if(!wizard->node->next) {
-                    wizard->node->next = child;
-                    #ifdef DEBUG_MODE
-                        std::printf("(%d) ID Padre: %d | %s %s (NEXT)\n", 
-                            child->getId(), child->id_father, child->name.c_str(),
-                            child->last_name.c_str()
-                        );
-                    #endif
-                }
-            }
-        }
-
-        //Ordenar
-
-        /*if(wizard->node->next && wizard->node->prev && wizard->node->prev->getId() > wizard->node->next->getId()) {
-
-            /*
-                Si el id del prev es mayor al id del next entonces se intercambian.
-                Los ids menores van al lado izquierdo.
-
-                         50
-                        /  \
-                      30   70
-                     / \   / \
-                   20  40 60 80
-                  /    \      \
-                 10    35     90
-            
-            std::swap(wizard->node->prev, wizard->node->next);
-        }
-    }*/
+    file.close();
     return true;
 }

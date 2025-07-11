@@ -10,9 +10,13 @@ int main(int argc, char** argv) {
     std::printf(success ? "\nCSV cargado\n" : "Error al cargar el csv\n");
 
     Cli::addCommand("--help", [](std::vector<std::string> args){ 
-        std::printf("Help menu\n");
-        std::printf("--search <id> - Search a wizard\n");
-        std::printf("--showall - Show all wizards\n");
+        std::printf("Menu de ayuda\n");
+        std::printf("--search <id> - Busca un mago especifico\n");
+        std::printf("--showall - Muestra todos\n");
+        std::printf("--showallalive - Muestra todos los vivos\n");
+        std::printf("--showalldead - Muestra todos los muertos\n");
+        std::printf("--owner - Muestra al owner\n");
+        return 0;
     });
 
     Cli::addCommand("--search", [&](std::vector<std::string> args){
@@ -22,8 +26,38 @@ int main(int argc, char** argv) {
         }
         //school.showInfo(school.root);
         auto node = school.searchNode(school.root, std::stoi(args[1]));
-        if(!node) return std::printf("Mago no encontrado\n");
+        if(!node) return std::printf("Mago no encontrado.\n");
         node->showInfo();
+        return 0;
+    });
+
+    Cli::addCommand("--showallalive", [&](std::vector<std::string> args){
+        if(args.size() != 1) {
+            std::printf("--showallalive\n");
+            return 0;
+        }
+        
+        school.showAllInfo(school.root, ThreeWizards::e_info_flags::SHOW_ALIVE);
+        return 0;
+    });
+
+    Cli::addCommand("--showalldead", [&](std::vector<std::string> args){
+        if(args.size() != 1) {
+            std::printf("--showdead\n");
+            return 0;
+        }
+        
+        school.showAllInfo(school.root, ThreeWizards::e_info_flags::SHOW_DEAD);
+        return 0;
+    });
+
+    Cli::addCommand("--owner", [&](std::vector<std::string> args){
+        if(args.size() != 1) {
+            std::printf("--owner\n");
+            return 0;
+        }
+        
+        school.showAllInfo(school.root, ThreeWizards::e_info_flags::SHOW_OWNER);
         return 0;
     });
 
@@ -33,7 +67,11 @@ int main(int argc, char** argv) {
             return 0;
         }
         
-        school.showAllInfo(school.root);
+        school.showAllInfo(school.root, 
+            ThreeWizards::e_info_flags::SHOW_ALIVE | 
+            ThreeWizards::e_info_flags::SHOW_DEAD | 
+            ThreeWizards::e_info_flags::SHOW_OWNER
+        );
         return 0;
     });
 
