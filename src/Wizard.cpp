@@ -19,4 +19,8 @@ void Wizard::showInfo(){
     std::cout << "Is dead: " << this->is_dead << std::endl;
     std::cout << "Type magic: " << this->type_magic << std::endl;
     std::cout << "Is owner: " << this->is_owner << std::endl;
+
+    auto d = ThreeWizards::searchNode(ThreeWizards::root, this->id_father);
+    if(!d) return;
+    std::cout << "Hijo de: " << d->name << " " << d->last_name << std::endl;
 }
