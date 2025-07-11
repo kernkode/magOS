@@ -14,8 +14,9 @@ class Wizard{
         uint16_t    is_dead : 1;
         std::string type_magic;
         uint16_t    is_owner : 1;
+        Node*       node;
 
-        inline auto getId();
+        inline uint16_t getId() { return this->id; }
         void showInfo();
 
         Wizard(uint8_t id);

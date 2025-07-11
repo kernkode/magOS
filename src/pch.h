@@ -5,6 +5,9 @@
 #include <cstdint>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 #include "cli.h"
 #include "Wizard.h"
+#include "ThreeWizards.h"
+#include "Node.h"
