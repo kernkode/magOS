@@ -45,6 +45,7 @@ void ThreeWizards::showAllInfo(Wizard* mago, uint16_t flags){
 
 //Recursividad de mierda, la odio...
 void ThreeWizards::addNode(Wizard* wizard, Wizard* child){
+    if(!child) return;
     if(wizard->getId() < child->getId()){
         if(!wizard->node->prev) 
             wizard->node->prev = child;
